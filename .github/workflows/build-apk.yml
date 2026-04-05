@@ -1,0 +1,35 @@
+name: 自动打包 APK
+on:
+  workflow_dispatch:  # 允许手动点击打包
+  push:
+    branches: [ master ] # 推送到 main 自动打包
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: 赋予执行权限
+        run: chmod +x ./gradlew
+
+      - name: 打包
+        run: ./gradlew assembleRelease
+
+      - name: 发布到Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            app/build/outputs/apk/normal/release/*.apk
+            app/build/outputs/apk/compatible/release/*.apk
+          tag_name: build_${{ github.run_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
