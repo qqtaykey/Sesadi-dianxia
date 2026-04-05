@@ -114,15 +114,27 @@ public class MainActivity extends BaseActivity {
         else {
             registerReceiver(broadcastReceiver, intentFilter);
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.tips);
-        builder.setMessage(R.string.start_message);
-        builder.setPositiveButton(R.string.btn_understood, (dialog, which) -> dialog.dismiss());
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-        Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        if (positiveButton != null) {
-            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.button));
+        // 检查是否首次进入，使用SharedPreferences存储状态
+        android.content.SharedPreferences sharedPreferences = getSharedPreferences("app_preferences", MODE_PRIVATE);
+        boolean hasSeenMessage = sharedPreferences.getBoolean("has_seen_start_message", false);
+        
+        if (!hasSeenMessage) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.tips);
+            builder.setMessage(R.string.start_message);
+            builder.setPositiveButton(R.string.btn_understood, (dialog, which) -> {
+                // 标记用户已经看过提示
+                android.content.SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("has_seen_start_message", true);
+                editor.apply();
+                dialog.dismiss();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            Button positiveButton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            if (positiveButton != null) {
+                positiveButton.setTextColor(ContextCompat.getColor(this, R.color.button));
+            }
         }
     }
     
