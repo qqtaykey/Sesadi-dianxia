@@ -153,7 +153,7 @@
                     android:orientation="vertical"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="猫宝殿下"
+                    android:text="喵宝殿下"
                     android:textAlignment="gravity"
                     android:textColor="@color/main_button_text"
                     android:textSize="14sp" />
