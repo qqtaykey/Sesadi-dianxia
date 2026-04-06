@@ -6,5 +6,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/MenuTheme"
-        android:background="@color/colorPrimary">
+        android:background="@drawable/toolbar_gradient">
 </androidx.appcompat.widget.Toolbar>
