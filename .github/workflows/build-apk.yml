@@ -3,7 +3,6 @@ on:
   workflow_dispatch:  # 允许手动点击打包
   push:
     branches: [ master ] # 推送到 main 自动打包
-  workflow_dispatch:  # 加上这行，才能手动触发
 jobs:
   build:
     runs-on: ubuntu-latest
