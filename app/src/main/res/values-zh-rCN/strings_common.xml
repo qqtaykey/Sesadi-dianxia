@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">喵宝旗舰版</string>
+    <string name="app_name">喵宝的殿下</string>
 
 
 
@@ -24,8 +24,8 @@
     <string name="other_log">其他记录</string>
     <string name="runtime_log">运行日志</string>
     <string name="unactivated">未激活</string>
-    <string name="tips">提示</string>
-    <string name="btn_understood">我知道了</string>
+    <string name="tips">殿下温馨提醒</string>
+    <string name="btn_understood">本宫知道了</string>
     <string name="hide_the_application_icon">隐藏图标</string>
     <string name="language_simplified_chinese">始终使用中文</string>
     <string name="view_error_log_file">查看异常日志</string>
